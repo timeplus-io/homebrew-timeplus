@@ -4,7 +4,6 @@ class ProtonAT1318 < Formula
     license "Apache-2.0"
   
     version "1.3.18"
-    revision "e2427df64b8c5bde8e9f2816135c93226bf55c20"
   
     if Hardware::CPU.arm?
       url "https://github.com/timeplus-io/proton/releases/download/v#{version}/proton-Darwin-arm64"
@@ -24,6 +23,7 @@ class ProtonAT1318 < Formula
 
     def caveats
         <<~EOS
+          Built from Git commit: e2427df64b8c5bde8e9f2816135c93226bf55c20
           To interact with Proton:
       
           1. Start the Proton server:
