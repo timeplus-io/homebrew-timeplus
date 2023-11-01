@@ -26,7 +26,7 @@ cd proton_data
 
 ```bash
 brew tap timeplus-io/timeplus
-brew install proton@1.3.18
+brew install proton
 ```
 
 ## Starting the Server and Client
