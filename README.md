@@ -52,3 +52,23 @@ For SQL queries and examples, refer to the [official documentation](https://docs
 **Step 5: Terminate the Proton Server**
 
 To stop the server, use `CTRL+C` in the server terminal.
+
+## Upgrade/Delete
+
+**Step 6: Upgrade to latest version**
+
+To upgrade to new version of Proton, first make sure the proton server is stopped.
+Then run
+```shell
+brew update
+brew upgrade proton
+```
+**Step 7: Uninstall Proton**
+
+We are sorry to see you go. Please share your feedback in [our community slack](https://timeplus.com/slack).
+
+To uninstall Proton, first make sure the proton server is stopped.
+Then run
+```shell
+brew remove proton
+```
