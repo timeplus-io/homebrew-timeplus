@@ -41,6 +41,6 @@ class ProtonAT1318 < Formula
     end
 
     test do
-      assert_match "proton-robot", shell_output("#{bin}/proton local --query 'SELECT * FROM system.contributors'")
+      assert_match "Gimi Liang", shell_output("#{bin}/proton local --query 'SELECT * FROM system.contributors'")
     end
   end
