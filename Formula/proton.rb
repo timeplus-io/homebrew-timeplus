@@ -3,27 +3,17 @@ class Proton < Formula
     homepage "https://timeplus.com"
     license "Apache-2.0"
 
-    version "1.3.25"
+    version "1.3.26"
 
     if Hardware::CPU.arm?
       url "https://github.com/timeplus-io/proton/releases/download/v#{version}/proton-v#{version}-Darwin-arm64"
-      sha256 "3cfe92c2ac379c33fa7589a1d05efc2dc7a93e3ae1d9e253b25b97ba29f7188d"
+      sha256 "34120ec58fb22215bf25322bb566423d043f0470a386eaad90358d09a23a28fc"
     else
       url "https://github.com/timeplus-io/proton/releases/download/v#{version}/proton-v#{version}-Darwin-x86_64"
-      sha256 "e27812f192d8f6cb98d54b474136072db6ab4cc0aa475ebe6a9b94152a37a770"
+      sha256 "6f861748c45e8086dc2bec4adc149e0fa4ffaffd076a0ac8f03793af3f4bf9ba"
     end
 
     def install
-      if Formula["proton"].linked_keg.exist?
-        kegs = Formula["proton"].installed_kegs
-        kegs.each do |keg|
-          if keg.version < version
-            ohai "Unlinking and removing older version: Proton #{keg.version}"
-            keg.unlink
-            keg.remove
-          end
-        end
-      end
 
       if Hardware::CPU.arm?
         bin.install "proton-v#{version}-Darwin-arm64" => "proton"
