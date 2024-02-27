@@ -7,10 +7,10 @@ class Proton < Formula
 
     if Hardware::CPU.arm?
       url "https://github.com/timeplus-io/proton/releases/download/v#{version}/proton-v#{version}-Darwin-arm64"
-      sha256 "152e160864dfdd31e409f7a77d89dab2cf00f12d12afdeea60fc1934b300163e"
+      sha256 "71ac68ad28e4154914a6d50a67c4c841146fe78db735fd0dff30d1891ea362d7"
     else
       url "https://github.com/timeplus-io/proton/releases/download/v#{version}/proton-v#{version}-Darwin-x86_64"
-      sha256 "6ed9bbcd5e8cd73be93a7e628620cb9aa4118bebae68a37efec04038d764a8bf"
+      sha256 "64324a25d7f1a2be4f2ea251dfc76d5e59022bbbddbdca563eb92353d0b5ce20"
     end
 
     def install
