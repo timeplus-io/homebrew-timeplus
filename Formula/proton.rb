@@ -1,16 +1,16 @@
 class Proton < Formula
-    desc "A unified streaming and historical data processing engine in one single binary, powered by ClickHouse"
+    desc "Timeplus Proton: A unified streaming and historical data processing engine in one single binary, powered by ClickHouse"
     homepage "https://timeplus.com"
     license "Apache-2.0"
 
-    version "1.5.4"
+    version "1.5.5"
 
     if Hardware::CPU.arm?
       url "https://github.com/timeplus-io/proton/releases/download/v#{version}/proton-v#{version}-Darwin-arm64"
-      sha256 "1dd57e35b7a4716f051343f644354a14ad1f052a79ad7dd3c205545ad8976012"
+      sha256 "3e03f6bfac683643ad9de5e4c4c997aedc26a3d4bfc20225ade5e20030893582"
     else
       url "https://github.com/timeplus-io/proton/releases/download/v#{version}/proton-v#{version}-Darwin-x86_64"
-      sha256 "2453ec1dee152bbcbd0d9822218e0d51db80e881d98eb55eca6cd24fabed40f3"
+      sha256 "6973747bad2f18521de28a0a9e82fed1a6ea7c7c6001d406c0e5f83a7f06da87"
     end
 
     def install
@@ -24,19 +24,19 @@ class Proton < Formula
 
     def caveats
         <<~EOS
-          To interact with Proton:
+          To interact with Timeplus Proton:
 
-          1. Start the Proton server:
+          1. Start the Timeplus Proton server with data/log/config in the current folder:
              $ proton server start
 
           2. In a separate terminal, connect to the server:
              $ proton client
              (Note: If you encounter a 'connection refused' error, use: proton client --host 127.0.0.1)
 
-          3. To terminate the server, press ctrl+c in the server terminal.
+          3. To terminate the server, press Ctrl+C in the server terminal.
 
           For detailed usage and more information, check out the Timeplus documentation:
-          https://docs.timeplus.com/
+          https://docs.timeplus.com/install
         EOS
     end
   end
