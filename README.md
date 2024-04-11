@@ -24,18 +24,12 @@ brew install proton
 In the current terminal, enter:
 
 ```bash
-proton server start
+proton server
 ```
 
 **Step 3: Connect to the Proton Server**
 
 Open another terminal and enter:
-
-```bash
-proton client
-```
-
-*Note:* If you encounter a "connection refused" error, try using:
 
 ```bash
 proton client -h 127.0.0.1
@@ -51,7 +45,7 @@ For SQL queries and examples, refer to the [official documentation](https://docs
 
 **Step 5: Terminate the Proton Server**
 
-To stop the server, use `CTRL+C` in the server terminal.
+To stop the server, use `Ctrl+C` in the server terminal.
 
 ## Upgrade/Delete
 
@@ -70,5 +64,5 @@ We are sorry to see you go. Please share your feedback in [our community slack](
 To uninstall Proton, first make sure the proton server is stopped.
 Then run
 ```shell
-brew remove proton
+brew uninstall proton
 ```
