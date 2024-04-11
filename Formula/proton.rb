@@ -1,5 +1,5 @@
 class Proton < Formula
-    desc "Timeplus Proton: A unified streaming and historical data processing engine in one single binary, powered by ClickHouse"
+    desc "Timeplus Proton: A streaming processor, powered by ClickHouse"
     homepage "https://timeplus.com"
     license "Apache-2.0"
 
@@ -27,11 +27,10 @@ class Proton < Formula
           To interact with Timeplus Proton:
 
           1. Start the Timeplus Proton server with data/log/config in the current folder:
-             $ proton server start
+             $ proton server
 
           2. In a separate terminal, connect to the server:
-             $ proton client
-             (Note: If you encounter a 'connection refused' error, use: proton client --host 127.0.0.1)
+             $ proton client --host 127.0.0.1
 
           3. To terminate the server, press Ctrl+C in the server terminal.
 
