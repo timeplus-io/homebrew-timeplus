@@ -6,10 +6,10 @@ class Proton < Formula
     version "1.5.16"
 
     if Hardware::CPU.arm?
-      url "https://github.com/timeplus-io/proton/releases/download/v#{version}/proton-v#{version}-Darwin-arm64"
+      url "https://d.timeplus.com/proton-v#{version}-Darwin-arm64"
       sha256 "5c3845944d5049b746ae6f189bb173c3042e52a0eb791400b3a9abaf1cc88868"
     else
-      url "https://github.com/timeplus-io/proton/releases/download/v#{version}/proton-v#{version}-Darwin-x86_64"
+      url "https://d.timeplus.com/proton-v#{version}-Darwin-x86_64"
       sha256 "8b743085f50e7fe5d9bd9b25d1f0ee1497db68a10817e2fc0d0b00c5f9a1bc4d"
     end
 
