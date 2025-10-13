@@ -1,0 +1,83 @@
+name: Update Proton Formula
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Proton version (e.g., 1.6.17)'
+        required: true
+        type: string
+  repository_dispatch:
+    types: [proton-release]
+
+jobs:
+  update-formula:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get version and download binaries
+        run: |
+          # Get version from manual input or repository_dispatch payload
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            VERSION="${{ github.event.inputs.version }}"
+          else
+            VERSION="${{ github.event.client_payload.version }}"
+          fi
+
+          echo "Updating formula to version: $VERSION"
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+
+          # Download binaries and calculate SHA256
+          echo "Downloading ARM64 binary..."
+          curl -sL "https://d.timeplus.com/proton-v${VERSION}-Darwin-arm64" -o arm64-binary
+
+          echo "Downloading x86_64 binary..."
+          curl -sL "https://d.timeplus.com/proton-v${VERSION}-Darwin-x86_64" -o x86_64-binary
+
+          # Calculate SHA256 checksums
+          ARM64_SHA=$(shasum -a 256 arm64-binary | awk '{print $1}')
+          X86_64_SHA=$(shasum -a 256 x86_64-binary | awk '{print $1}')
+
+          echo "ARM64 SHA256: ${ARM64_SHA}"
+          echo "x86_64 SHA256: ${X86_64_SHA}"
+
+          echo "ARM64_SHA=${ARM64_SHA}" >> $GITHUB_ENV
+          echo "X86_64_SHA=${X86_64_SHA}" >> $GITHUB_ENV
+
+          # Clean up downloaded binaries
+          rm arm64-binary x86_64-binary
+
+      - name: Update Formula
+        run: |
+          echo "Updating Formula/proton.rb..."
+
+          # Update version
+          sed -i '' "s/version \".*\"/version \"${VERSION}\"/" Formula/proton.rb
+
+          # Update SHA256 for ARM64 (first occurrence)
+          sed -i '' "0,/sha256 \".*\"/{s/sha256 \".*\"/sha256 \"${ARM64_SHA}\"/;}" Formula/proton.rb
+
+          # Update SHA256 for x86_64 (second occurrence)
+          sed -i '' "0,/sha256 \".*\"/!{0,/sha256 \".*\"/{s/sha256 \".*\"/sha256 \"${X86_64_SHA}\"/;}}" Formula/proton.rb
+
+          echo "Updated formula:"
+          cat Formula/proton.rb
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7.0.8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Update proton.rb for ${{ env.VERSION }}"
+          title: "Update Proton to ${{ env.VERSION }}"
+          body: |
+            Automated update of Proton formula to version ${{ env.VERSION }}
+
+            - Version: ${{ env.VERSION }}
+            - ARM64 SHA256: ${{ env.ARM64_SHA }}
+            - x86_64 SHA256: ${{ env.X86_64_SHA }}
+
+            This PR was automatically created by the update-formula workflow.
+          branch: "update-proton-${{ env.VERSION }}"
+          delete-branch: true
