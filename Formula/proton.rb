@@ -3,14 +3,14 @@ class Proton < Formula
     homepage "https://timeplus.com"
     license "Apache-2.0"
 
-    version "1.6.16"
+    version "3.0.2"
 
     if Hardware::CPU.arm?
       url "https://d.timeplus.com/proton-v#{version}-Darwin-arm64"
-      sha256 "dfa35787c4ffd69bece2087cb292ac94cbdafe71c9ef3785017f01327ea8dbe3"
+      sha256 "0ad612ebbb8c6d19d9d6f7399f0e7a91701d98df01c0ed479747929f841714be"
     else
       url "https://d.timeplus.com/proton-v#{version}-Darwin-x86_64"
-      sha256 "42ae94ee8d47f990a46993c1c0b67a1965f9a8f4168fe83029df848594c9b15f"
+      sha256 "c16afc84220a2af041fdbfcd707ab2d1c55bb69d9427198b035b0ebf8ff8e07f"
     end
 
     def install
@@ -35,7 +35,7 @@ class Proton < Formula
           3. To terminate the server, press Ctrl+C in the server terminal.
 
           For detailed usage and more information, check out the Timeplus documentation:
-          https://docs.timeplus.com/install
+          https://docs.timeplus.com/
         EOS
     end
   end
