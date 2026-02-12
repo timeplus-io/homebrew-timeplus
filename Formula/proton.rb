@@ -3,14 +3,14 @@ class Proton < Formula
     homepage "https://timeplus.com"
     license "Apache-2.0"
 
-    version "3.0.14"
+    version "3.0.16"
 
     if Hardware::CPU.arm?
       url "https://d.timeplus.com/proton-v#{version}-Darwin-arm64.tar.gz"
-      sha256 "9ffe308b7e3642ae13129719556410c459be7ca888e528de815aea1769f277b9"
+      sha256 "9ee491725ddef0dd8a47d5c856949df259be8083b1067b8ef221bc01e3d69d81"
     else
       url "https://d.timeplus.com/proton-v#{version}-Darwin-x86_64.tar.gz"
-      sha256 "73157d58be005ccfe8be75beb4a698feb498ae3e449ce4391a7fa417ce71f381"
+      sha256 "371a1cc8ebb7ae70375aa4178e8c2fa1d622692ca0584d6e259894d45e23cc6e"
     end
 
     def install
